@@ -6,27 +6,28 @@ using System.Linq;
 public class RDSController : MonoBehaviour
 {
     [SerializeField] CustomRenderTexture _texture;
-    [SerializeField] Material _initMat;
-    [SerializeField] Material _updateMat;
     [SerializeField] Material _surfaceMat;
-    Color[] buf = new Color[0];
-    //initialize renderTexture with random frame count
-    int random_frame = 0;
-    int current_frame = 0;
-
     //前のフレームのrenderTextureの状態を保存して
     //1対した変化がなければリセットする
+    Color[] buf = new Color[0];
+    //時間でもリセット
+    int random_frame = 0;
+    int current_frame = 0;
+    
+    //random color
+    float hueMin = 0;
+    float hueMax = 1.0f;
+    float saturationMin = 0.5f;
+    float saturationMax = 1.0f;
 
-    void Start()
-    {
-        random_frame = Random.Range(60, 300);
+    void Start(){
+        random_frame = Random.Range(120, 300);
     }
 
     
     void Update()
     {
-        //if (current_frame == random_frame) {
-        if (IsNotChangedImage()){
+        if (current_frame >= random_frame || IsNotChangedImage()){
             //Update render texture and change parameters
             _texture.Initialize();
 
@@ -38,15 +39,16 @@ public class RDSController : MonoBehaviour
 
             //InitMat
             _texture.initializationMaterial.SetFloat("_Seed", Random.Range(0, 1.0f));
+
+            //Surface
+            _surfaceMat.SetColor("_Color1", Random.ColorHSV(hueMin, hueMax, saturationMin, saturationMax, 0, 1.0f, 1.0f, 1.0f));
             
+            //Time control
+            random_frame = Random.Range(120, 300);
             current_frame = 0;
-            random_frame = Random.Range(60, 300);
-        } /* else {
+        } else {
             current_frame += 1;
-            if (current_frame % 5 == 0 && IsNotChangedImage()){
-                current_frame = random_frame;
-            }
-        }*/
+        }
     }
 
     bool IsNotChangedImage()
