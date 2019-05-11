@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922062406394747ca9c480bb5532a4af, type: 3}
+  m_Name: ppprofile
+  m_EditorClassIdentifier: 
+  pan:
+    speed: 10
+    min: -10
+    max: 10
+    ping: 1
+    pingpong: 1
+  tilt:
+    speed: 10
+    min: -10
+    max: 10
+    ping: 1
+    pingpong: 1
+  zoom:
+    speed: 10
+    min: -10
+    max: 10
+    ping: 1
+    pingpong: 1
+  craneH:
+    speed: 10
+    min: -10
+    max: 10
+    ping: 1
+    pingpong: 1
+  craneV:
+    speed: 10
+    min: -10
+    max: 10
+    ping: 1
+    pingpong: 1
+  track:
+    target: {fileID: 0}
+    radius: 10
+    theta: 0
+    thetaSpeed: 0
+    phai: 0
+    phaiSpeed: 0
+    isTracking: 0
